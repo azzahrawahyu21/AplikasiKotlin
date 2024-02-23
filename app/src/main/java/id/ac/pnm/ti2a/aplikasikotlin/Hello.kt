@@ -1,4 +1,5 @@
 package id.ac.pnm.ti2a.aplikasikotlin
+
 fun main() {
     // Memanggil fungsi untuk input biodata
     val biodata = inputBiodata()
@@ -16,9 +17,8 @@ fun main() {
     println("Semester   : ${biodata.semester}")
 
     println("\n========== Hobi ==========")
-    for (hobiItem in hobi) {
-        println("- $hobiItem")
-    }
+    println("Hobi       : ${hobi.nama}")
+    println("Deskripsi  : ${hobi.deskripsiHobi}")
 }
 
 // Fungsi untuk input biodata
@@ -40,21 +40,18 @@ fun inputBiodata(): Biodata {
 }
 
 // Fungsi untuk input hobi
-fun inputHobi(): List<String> {
-    val hobi = mutableListOf<String>()
+fun inputHobi(): Hobi {
+    print("Masukkan hobi: ")
+    val hobi = readLine()!!
+    print("Masukkan deskripsi hobi: ")
+    val deskripsiHobi = readLine()!!
 
-    print("Masukkan jumlah hobi: ")
-    val jumlahHobi = readLine()!!.toInt()
-
-    for (i in 1..jumlahHobi) {
-        print("Masukkan hobi ke-$i: ")
-        val hobiItem = readLine()!!
-        hobi.add(hobiItem)
-    }
-
-    return hobi
+    return Hobi(hobi, deskripsiHobi)
 }
 
 // Data class untuk menyimpan biodata
 data class Biodata(val nama: String, val nim: Int, val alamat: String, val ttl: String,
                    val kelas: String, val semester: String)
+
+// Data class untuk menyimpan hobi
+data class Hobi(val nama: String, val deskripsiHobi: String)
